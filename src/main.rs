@@ -231,7 +231,7 @@ impl TwoDimMedium {
 async fn main() {
     use macroquad::rand;
 
-    let w = 70;
+    let w = 50;
     let mut medium = TwoDimMedium::new(w);
     let mut t = 0.;
     let mut f = 1.;
@@ -304,9 +304,9 @@ async fn main() {
         widgets::Window::new(hash!("Settings"), Vec2::new(0., 0.), Vec2::new(400., 150.))
             .label("Settings")
             .ui(&mut *root_ui(), |ui| {
-                ui.slider(hash!(), "freq:", 0.0..300.0, &mut f);
-                ui.slider(hash!(), "tension:", 5.0..100000.0, &mut medium.coef);
-                ui.slider(hash!(), "damping:", 0.0..1.0, &mut damping);
+                ui.slider(hash!(), "freq:", 0.0..500.0, &mut f);
+                ui.slider(hash!(), "tension:", 50.0..200_000.0, &mut medium.coef);
+                ui.slider(hash!(), "damping:", 0.0..5.0, &mut damping);
                 ui.checkbox(hash!(), "show amplitude feild", &mut color_feild);
                 ui.checkbox(hash!(), "show sand", &mut sand);
                 ui.checkbox(hash!(), "sweep freq", &mut sweep);
