@@ -305,7 +305,7 @@ async fn main() {
             .label("Settings")
             .ui(&mut *root_ui(), |ui| {
                 ui.slider(hash!(), "freq:", 0.0..500.0, &mut f);
-                ui.slider(hash!(), "tension:", 50.0..100_000.0, &mut medium.coef);
+                ui.slider(hash!(), "tension:", 400.0..30_000.0, &mut medium.coef);
                 ui.slider(hash!(), "damping:", 0.0..5.0, &mut damping);
                 ui.checkbox(hash!(), "show amplitude feild", &mut color_feild);
                 ui.checkbox(hash!(), "show sand", &mut sand);
