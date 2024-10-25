@@ -231,7 +231,7 @@ impl TwoDimMedium {
 async fn main() {
     use macroquad::rand;
 
-    let w = 50;
+    let w = 75;
     let mut medium = TwoDimMedium::new(w);
     let mut t = 0.;
     let mut f = 1.;
@@ -279,7 +279,7 @@ async fn main() {
             // draw sand
 
             sandgrains.par_iter_mut().for_each(|p| {
-                let amp = medium.interpolate(p[0], p[1]);
+                let amp = medium.interpolate(p[0], p[1]) * 5.;
                 let random_x = rand::gen_range(-1.0, 1.0_f32);
                 let random_x = random_x * amp;
                 let random_y = rand::gen_range(-1.0, 1.0_f32);
@@ -305,7 +305,7 @@ async fn main() {
             .label("Settings")
             .ui(&mut *root_ui(), |ui| {
                 ui.slider(hash!(), "freq:", 0.0..500.0, &mut f);
-                ui.slider(hash!(), "tension:", 50.0..200_000.0, &mut medium.coef);
+                ui.slider(hash!(), "tension:", 50.0..100_000.0, &mut medium.coef);
                 ui.slider(hash!(), "damping:", 0.0..5.0, &mut damping);
                 ui.checkbox(hash!(), "show amplitude feild", &mut color_feild);
                 ui.checkbox(hash!(), "show sand", &mut sand);
