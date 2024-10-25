@@ -236,12 +236,12 @@ async fn main() {
     let mut t = 0.;
     let mut f = 1.;
     let mut damping = 0.1;
-    let mut sandgrains = Vec::new();
 
     let mut color_feild = false;
     let mut sand = true;
     let mut sweep = true;
 
+    let mut sandgrains = Vec::new();
     for _ in 0..20000 {
         sandgrains.push([
             rand::gen_range(0.5, w as f32 - 0.5),
@@ -295,7 +295,7 @@ async fn main() {
                 draw_circle(
                     min / 2. * ((p[0] as f32 / w as f32) - 0.5) + min / 2.,
                     min / 2. * ((p[1] as f32 / w as f32) - 0.5) + min / 2.,
-                    0.35,
+                    0.5,
                     YELLOW,
                 )
             });
@@ -311,7 +311,7 @@ async fn main() {
                 ui.checkbox(hash!(), "show sand", &mut sand);
                 ui.checkbox(hash!(), "sweep freq", &mut sweep);
 
-                if ui.button(None, "reset") {
+                if ui.button(None, "reset wave") {
                     for row in medium.points.iter_mut() {
                         for p in row.iter_mut() {
                             p.pos = 0.;
@@ -319,6 +319,15 @@ async fn main() {
                             p.velocity = 0.;
                             p.acceleration = 0.;
                         }
+                    }
+                }
+                if ui.button(None, "reset sand") {
+                    sandgrains = Vec::new();
+                    for _ in 0..20000 {
+                        sandgrains.push([
+                            rand::gen_range(0.5, w as f32 - 0.5),
+                            rand::gen_range(0.5, w as f32 - 0.5),
+                        ]);
                     }
                 }
             });
